@@ -44,7 +44,7 @@ cd ecommerce-inventory
 2. **Docker Setup**
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 
