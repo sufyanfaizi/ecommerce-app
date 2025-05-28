@@ -1,0 +1,109 @@
+{
+  "info": {
+    "name": "Django Product API",
+    "_postman_id": "12345678-1234-1234-1234-123456789abc",
+    "description": "Collection for ProductViewSet endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Products",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/products/",
+          "host": ["{{base_url}}"],
+          "path": ["products", ""]
+        }
+      }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Sample Product\",\n  \"price\": 10.99,\n  \"sku\": \"SP123\",\n  \"quantity\": 100\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/products/",
+          "host": ["{{base_url}}"],
+          "path": ["products", ""]
+        }
+      }
+    },
+    {
+      "name": "Retrieve Product",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/products/1/",
+          "host": ["{{base_url}}"],
+          "path": ["products", "1"]
+        }
+      }
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Updated Product\",\n  \"price\": 12.99,\n  \"sku\": \"SP123\",\n  \"quantity\": 80\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/products/1/",
+          "host": ["{{base_url}}"],
+          "path": ["products", "1"]
+        }
+      }
+    },
+    {
+      "name": "Partial Update Product",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 9.99\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/products/1/",
+          "host": ["{{base_url}}"],
+          "path": ["products", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/products/1/",
+          "host": ["{{base_url}}"],
+          "path": ["products", "1"]
+        }
+      }
+    }
+  ]
+}
