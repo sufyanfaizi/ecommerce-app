@@ -25,7 +25,7 @@ def validate_and_update(data):
 @shared_task
 def send_report(report):
     message = '\n'.join(report)
-    send_mail('Inventory Report', message, 'noreply@example.com', ['admin@example.com'])
+    # send_mail('Inventory Report', message, 'noreply@example.com', ['admin@example.com'])
 
 def nightly_task_chain():
     chain(import_csv_data.s(), validate_and_update.s(), send_report.s())()

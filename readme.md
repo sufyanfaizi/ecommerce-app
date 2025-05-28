@@ -40,13 +40,22 @@ git clone https://github.com/yourusername/ecommerce-inventory.git
 cd ecommerce-inventory
 ````
 
-
 2. **Docker Setup**
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
+3. **Endpoints**
 
+| Method | Endpoint                | Description                      |
+| ------ | ----------------------- | -------------------------------- |
+| GET    | `/v1/products`          | Retrieve list of products        |
+| POST   | `/v1/products`          | Create a new product             |
+| GET    | `/v1/products/<int:pk>` | Retrieve a single product by or by search filters  |
+| PUT    | `/v1/products/<int:pk>` | Update a product by ID           |
+| PATCH  | `/v1/products/<int:pk>` | Partially update a product by ID |
+| DELETE | `/v1/products/<int:pk>` | Delete a product by ID           |
+| POST   | `/v1/shopify/webhook`   | Handle Shopify webhook callback  |
 
 Code Review Checklist:
 
