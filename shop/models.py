@@ -1,5 +1,9 @@
+from _pydecimal import ROUND_HALF_UP
+
+from _decimal import InvalidOperation
 from django.db import models
 from django.shortcuts import get_object_or_404
+from decimal import Decimal
 
 
 class Product(models.Model):
@@ -25,6 +29,10 @@ class Product(models.Model):
         return cls.objects.get(sku=sku)
 
     @classmethod
+    def get_by_id(cls , product_id):
+        return cls.objects.get(id=product_id)
+
+    @classmethod
     def update_quantity(cls , sku , quantity):
         product = get_object_or_404(cls,sku=sku)
         product.quantity = quantity
@@ -42,3 +50,18 @@ class Product(models.Model):
 
     def delete_product(self):
         self.delete()
+
+    def update_price(self, discount_percent):
+        try:
+            discount = Decimal(discount_percent)
+        except (ValueError, TypeError, InvalidOperation):
+            raise ValueError("Invalid discount_percent value")
+
+        if discount < 0 or discount > 100:
+            raise ValueError("discount_percent must be between 0 and 100")
+
+        discounted_price = self.price * (Decimal('1') - discount / Decimal('100'))
+        self.price = discounted_price.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        self.save()
+        return self
+
