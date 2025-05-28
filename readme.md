@@ -60,6 +60,7 @@ Code Review Checklist:
 - ✅ Adherence to Django best practices
 - ✅ Secure API access with authentication and permission checks.
 - ✅ Code is modular and easy to maintain or extend.
+- ✅Dont work direclty on main branch create branch and then MR
 
 Onboarding Plan:
 
