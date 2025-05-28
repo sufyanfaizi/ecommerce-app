@@ -5,6 +5,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from shop.serializers import ProductSerializer
 from shop.product_base_view import ProductBaseAPIView
 from django.db import transaction
+from .models import Product
+
 
 
 class ProductAPIView(ProductBaseAPIView):
@@ -14,7 +16,7 @@ class ProductAPIView(ProductBaseAPIView):
             serializer = ProductSerializer(product)
             return Response(serializer.data)
         else:
-            queryset = self.product_service.get_all()
+            queryset = Product.get_all()
             filter_backend = DjangoFilterBackend()
             queryset = filter_backend.filter_queryset(request, queryset, self)
             search_filter = filters.SearchFilter()
@@ -25,7 +27,7 @@ class ProductAPIView(ProductBaseAPIView):
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
-            product = self.product_service.create(serializer.validated_data)
+            product = Product.create_product(serializer.validated_data)
             return Response(ProductSerializer(product).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -34,10 +36,10 @@ class ProductAPIView(ProductBaseAPIView):
         if not pk:
             return Response({"error": "Product ID is required for update."}, status=status.HTTP_400_BAD_REQUEST)
 
-        product = self.product_service.get_by_id(pk)
+        product = Product.get_by_id(pk)
         serializer = ProductSerializer(product, data=request.data)
         if serializer.is_valid():
-            updated = self.product_service.update(product, serializer.validated_data)
+            updated = Product.update_product(product, serializer.validated_data)
             return Response(ProductSerializer(updated).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -46,10 +48,10 @@ class ProductAPIView(ProductBaseAPIView):
         if not pk:
             return Response({"error": "Product ID is required for partial update."}, status=status.HTTP_400_BAD_REQUEST)
 
-        product = self.product_service.get_by_id(pk)
+        product = Product.get_by_id(pk)
         serializer = ProductSerializer(product, data=request.data, partial=True)  # partial=True allows partial updates
         if serializer.is_valid():
-            updated = self.product_service.update(product, serializer.validated_data)
+            updated =Product.update_product(product, serializer.validated_data)
             return Response(ProductSerializer(updated).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -57,8 +59,8 @@ class ProductAPIView(ProductBaseAPIView):
         if not pk:
             return Response({"error": "Product ID is required for deletion."}, status=status.HTTP_400_BAD_REQUEST)
 
-        product = self.product_service.get_by_id(pk)
-        self.product_service.delete(product)
+        product = Product.get_by_id(pk)
+        Product.delete(product)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
