@@ -46,3 +46,30 @@ cd ecommerce-inventory
 ```bash
 docker-compose up --build
 ```
+
+
+Code Review Checklist:
+
+- ✅ API endpoints follow RESTful conventions.
+- ✅ Proper use of HTTP status codes and error handling.
+- ✅ Clear and concise docstrings and comments throughout the code.
+- ✅ Use of appropriate Django views and serializers.
+- ✅ Avoid putting business logic directly in views; delegate to services or Celery tasks.
+- ✅ Tests are written for views, models, and Celery tasks to ensure coverage and stability.
+- ✅ Database queries are optimized and use transactions where necessary.
+- ✅ Adherence to Django best practices
+- ✅ Secure API access with authentication and permission checks.
+- ✅ Code is modular and easy to maintain or extend.
+
+Onboarding Plan:
+
+Day 1–2: Setup environment using README.md, run test suite.
+
+Day 3: Review existing models and APIs.
+
+Day 4–5: Assign first small bug fix or task.
+
+Week 2: Pair programming and write a new endpoint.
+
+Ongoing: Code review.
+
