@@ -105,7 +105,6 @@ class ProductAPIView(viewsets.GenericViewSet):
             product = Product.get_by_id(product_id=product_id)
         else:
             return Response({"error": "Either sku or product_id must be provided."}, status=status.HTTP_400_BAD_REQUEST)
-
         if not product:
             return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
 
