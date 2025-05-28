@@ -38,9 +38,11 @@ A Django-based ecommerce backend with REST API, Celery task queue, Redis, and we
 ```bash
 git clone https://github.com/yourusername/ecommerce-inventory.git
 cd ecommerce-inventory
+````
 
 
 2. **Docker Setup**
 
-```
+```bash
 docker-compose up --build
+```
