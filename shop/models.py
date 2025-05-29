@@ -32,11 +32,9 @@ class Product(models.Model):
     def get_by_id(cls , product_id):
         return cls.objects.get(id=product_id)
 
-    @classmethod
-    def update_quantity(cls , sku , quantity):
-        product = get_object_or_404(cls,sku=sku)
-        product.quantity = quantity
-        product.save()
+    def update_quantity(self  , quantity):
+        self.quantity = quantity
+        self.save()
 
     @classmethod
     def create_product(cls, validated_data):
