@@ -27,5 +27,6 @@ def send_report(report):
     message = '\n'.join(report)
     # send_mail('Inventory Report', message, 'noreply@example.com', ['admin@example.com'])
 
+# run it using celery -A shop.tasks.nightly_task_chain or direct from terminal
 def nightly_task_chain():
     chain(import_csv_data.s(), validate_and_update.s(), send_report.s())()
