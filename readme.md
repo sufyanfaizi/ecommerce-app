@@ -56,6 +56,8 @@ docker compose up --build
 | PATCH  | `/v1/products/<int:pk>` | Partially update a product by ID |
 | DELETE | `/v1/products/<int:pk>` | Delete a product by ID           |
 | POST   | `/v1/shopify/webhook`   | Handle Shopify webhook callback  |
+| POST   | `/v1/products/discount` | Handle product discount  |
+
 
 Code Review Checklist:
 
