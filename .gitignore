@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# If you use migrations, ignore pycache inside migration folders:
+*/migrations/__pycache__/
+
+# Pytest cache
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# VSCode settings
+.vscode/
+
+# IDEs
+.idea/
+
